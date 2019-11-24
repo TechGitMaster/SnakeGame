@@ -30,6 +30,7 @@ namespace SnakeGame
         private static int[] arrayJarOfCounts = new int[] { 2, 22, 2, 0, 0}, BottomDetect = new int[22];
         private static int numberCountForMinus = 0, countingEaten = 1, handlingRandom = 0;
         private static List<int> NumberFlowMius = new List<int>();
+
         public SnakeGame()
         {
             InitializeComponent();
@@ -51,7 +52,7 @@ namespace SnakeGame
 
             PlayAgain.Click += new System.EventHandler((object control, EventArgs e) => this.functionToAll());
             timer.Interval = 50;
-            timer.Tick += new System.EventHandler((object controls, EventArgs es) => tickToe(controls, es));
+            timer.Tick += new System.EventHandler((object controls, EventArgs es) => tickToe(controls, es));    
             button1.Click += new System.EventHandler((object control, EventArgs e) => this.functionToAll());
         }
 
@@ -68,6 +69,7 @@ namespace SnakeGame
             NumberFlowMius = new List<int>();
             BottomDetect = new int[22];
             boolean = false; booleanNotDobule = true;
+            EatenFlow.Text = 1.ToString();
 
 
             bool bsCon = true;
@@ -161,7 +163,7 @@ namespace SnakeGame
                     {
                         if (arr[numerCountForSee] != 0)
                         {
-                            if ((arrayJarOfCounts[2]+ arrayJarOfCounts[1]) == arr[numerCountForSee])
+                            if ((arrayJarOfCounts[2]+arrayJarOfCounts[1]) == arr[numerCountForSee])
                             {
                                 conditionRight = false;
                             }
@@ -189,6 +191,7 @@ namespace SnakeGame
                                                         Panel RandomPanel = (Panel)(JarOfPanels.Controls[handlingRandom.ToString()]);
                                                         RandomPanel.BackColor = System.Drawing.Color.Black;
                                                         countingEaten++;
+                                                        numberCountForMinus--;
                                                         EatenFlow.Text = countingEaten.ToString();
                                                     }
                                                 }
@@ -216,7 +219,6 @@ namespace SnakeGame
                             {
                                 bool conditionToDown = true, conditionToDectect = true;
                                 NumberFlowMius.Add(arrayJarOfCounts[3]);
-                                arrayJarOfCounts[3] += 22;
 
                                 for (int numberCountForDectect = 0; BottomDetect.Length > numberCountForDectect; numberCountForDectect++)
                                 {
@@ -283,6 +285,7 @@ namespace SnakeGame
                                         }
                                     }
                                 }
+                                arrayJarOfCounts[3] += 22;
                             }
                         }
                     }
@@ -297,7 +300,6 @@ namespace SnakeGame
                             {
                                 bool conditionUp = true;
                                 NumberFlowMius.Add(arrayJarOfCounts[3]);
-                                arrayJarOfCounts[3] -= 22;
                                 for (int numerCountForSee = 0; numerCountForSee < arr.Length;numerCountForSee++) {
 
                                     if (arr[numerCountForSee] != 0) {
@@ -336,7 +338,7 @@ namespace SnakeGame
                                         }
                                     }
                                 }
-
+                                arrayJarOfCounts[3] -= 22;
                                 conditionToFlows = false;
                             }
                         }
